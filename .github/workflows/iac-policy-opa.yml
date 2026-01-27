@@ -1,0 +1,23 @@
+
+name: IaC Policy Enforcement - OPA
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+      - run: terraform plan -out=tfplan
+      - run: terraform show -json tfplan > plan.json
+      - run: |
+          curl -L https://github.com/open-policy-agent/conftest/releases/latest/download/conftest_Linux_x86_64.tar.gz | tar xz
+          sudo mv conftest /usr/local/bin/
+      - run: conftest test plan.json -p ../policies/
