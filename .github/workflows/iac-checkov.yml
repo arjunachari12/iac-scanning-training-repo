@@ -3,7 +3,7 @@ name: IaC Scan - Checkov
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   checkov:
