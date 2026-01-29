@@ -1,4 +1,4 @@
-
+test
 # IaC Scanning Training Repo
 
 This repository is a hands-on lab for learning:
