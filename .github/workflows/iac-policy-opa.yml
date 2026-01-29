@@ -3,7 +3,7 @@ name: IaC Policy Enforcement - OPA
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   policy:
